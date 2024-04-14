@@ -12,8 +12,8 @@ import React, { useEffect, useState } from "react";
 import { z } from "zod";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { error } from "console";
 import { passwordStrength } from "check-password-strength";
+import PasswordBar from "./PasswordBar";
 
 // SCHEMA
 const FormSchema = z
@@ -145,6 +145,9 @@ const SignupForm = () => {
             )
           }
         />
+
+        <PasswordBar passStrength={passStrength} />
+
         <Button type="submit" className="col-span-2">
           Sign Up
         </Button>

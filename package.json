@@ -17,6 +17,7 @@
     "@types/validator": "^13.11.9",
     "bcrypt": "^5.1.1",
     "check-password-strength": "^2.0.10",
+    "clsx-tailwind-merge": "^1.0.4",
     "framer-motion": "^11.0.25",
     "next": "14.1.4",
     "next-auth": "^4.24.7",
