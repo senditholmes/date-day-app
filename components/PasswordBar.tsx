@@ -8,7 +8,7 @@ interface Props {
 const PasswordBar = ({ passStrength }: Props) => {
   return (
     <div className="flex gap-2 col-span-2">
-      {Array.from({ length: passStrength + 1 }).map((i, index) => (
+      {Array.from({ length: passStrength }).map((i, index) => (
         <div
           key={index}
           className={cn("h-2 w-32 rounded-md", {
