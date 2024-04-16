@@ -79,9 +79,9 @@ const SignupForm = () => {
   };
 
   const saveUser: SubmitHandler<SignupInputType> = async (data) => {
-    const { confirmPassword, accepted, ...user } = data;
+    const { accepted, confirmPassword, ...user } = data;
     try {
-      const result = await registerUser(data);
+      const result = await registerUser(user);
       toast.success("Successfully registered!");
     } catch (error) {
       toast.error("Failed to register user.");
