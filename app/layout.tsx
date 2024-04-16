@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Providers } from "./providers";
 import HeaderNav from "../components/HeaderNav";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,6 +25,7 @@ export default function RootLayout({
           <HeaderNav />
           <div className="flex md:h-[calc(100vh-64px)] items-center justify-between p-24">
             {children}
+            <ToastContainer />
           </div>
         </Providers>
       </body>
