@@ -8,6 +8,7 @@ import {
   Link,
   Button,
 } from "@nextui-org/react";
+import SignInButton from "./SignInButton";
 
 const HeaderNav = () => {
   return (
@@ -25,13 +26,13 @@ const HeaderNav = () => {
         </NavbarItem>
       </NavbarContent>
       <NavbarContent justify="end">
-        <NavbarItem className="flex">
-          <Link href="/signin">Login</Link>
-        </NavbarItem>
         <NavbarItem>
           <Button as={Link} color="primary" href="/auth/signup" variant="flat">
             Sign Up
           </Button>
+        </NavbarItem>
+        <NavbarItem>
+          <SignInButton />
         </NavbarItem>
       </NavbarContent>
     </Navbar>
