@@ -5,7 +5,6 @@ import { Providers } from "./providers";
 import HeaderNav from "../components/HeaderNav";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({ subsets: ["latin"] });
 

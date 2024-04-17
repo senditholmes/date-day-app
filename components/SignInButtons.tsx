@@ -4,20 +4,23 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
-const SignInButton = () => {
+const SignInButtons = () => {
   const { data: session } = useSession();
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row gap-4">
       {session && session.user ? (
         <>
           <p>{session.user.email}</p>
           <Link href={"/api/auth/signout"}>Sign Out</Link>
         </>
       ) : (
-        <Link href={"/api/auth/signin"}>Log In</Link>
+        <>
+          <Link href={"/api/auth/signin"}>Log In</Link>
+          <Link href={"/auth/signup"}>Create An Account </Link>
+        </>
       )}
     </div>
   );
 };
 
-export default SignInButton;
+export default SignInButtons;
