@@ -10,7 +10,7 @@ const SignInButtons = () => {
     <div className="flex flex-row gap-4">
       {session && session.user ? (
         <>
-          <p>{`Sip it ` + session.user.firstName}</p>
+          <p>{`Sip it, ${session.user.firstName} ${session.user.lastName}`}</p>
           <Link href={"/api/auth/signout"}>Sign Out</Link>
         </>
       ) : (

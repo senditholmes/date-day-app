@@ -4,6 +4,7 @@ import NextAuth from "next-auth/next";
 
 import * as bcrypt from "bcrypt";
 import prisma from "@/app/lib/prisma";
+import { User } from "@prisma/client";
 
 //
 export const authOptions: AuthOptions = {
@@ -46,6 +47,18 @@ export const authOptions: AuthOptions = {
       },
     }),
   ],
+
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) token.user = user as User;
+      return token;
+    },
+
+    async session({ token, session }) {
+      session.user = token.user as User;
+      return session;
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
