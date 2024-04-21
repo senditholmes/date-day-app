@@ -5,7 +5,7 @@ import Link from "next/link";
 import React from "react";
 
 const SignInButtons = () => {
-  const { data: session } = useSession();
+  const { data: session } = useSession(); // USE SESSION HOOK CREATES JWT TOKEN
   return (
     <div className="flex flex-row gap-4">
       {session && session.user ? (

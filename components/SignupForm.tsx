@@ -17,7 +17,7 @@ import PasswordBar from "./PasswordBar";
 import { registerUser } from "@/app/lib/actions/authActions";
 import { toast } from "react-toastify";
 
-// SCHEMA
+// SCHEMA AND AUTH
 const FormSchema = z
   .object({
     firstName: z
@@ -52,7 +52,8 @@ const FormSchema = z
 
 //TYPES
 type SignupInputType = z.infer<typeof FormSchema>;
-//COMPONENT RENDER FUNCTION
+
+//COMPONENT RENDER FUNCTION//
 const SignupForm = () => {
   // STATE AND HOOKS
   const {

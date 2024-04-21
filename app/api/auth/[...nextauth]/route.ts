@@ -5,6 +5,7 @@ import NextAuth from "next-auth/next";
 import * as bcrypt from "bcrypt";
 import prisma from "@/app/lib/prisma";
 import { User } from "@prisma/client";
+import { getToken } from "next-auth/jwt";
 
 //
 export const authOptions: AuthOptions = {
@@ -51,6 +52,8 @@ export const authOptions: AuthOptions = {
   callbacks: {
     async jwt({ token, user }) {
       if (user) token.user = user as User;
+      console.log(`This is the ${user}`);
+      console.log(`This is the ${token}`);
       return token;
     },
 
