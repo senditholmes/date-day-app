@@ -74,11 +74,12 @@ const SignupForm = () => {
     console.log(passStrength);
   }, [watch().password]);
 
-  // EVENT HANDLERS
+  //UTIL FUNCTIONS
   const toggleVisible = () => {
     setVisiblePassword((prev) => !prev);
   };
 
+  // EVENT HANDLERS
   const saveUser: SubmitHandler<SignupInputType> = async (data) => {
     const { accepted, confirmPassword, ...user } = data;
     try {
