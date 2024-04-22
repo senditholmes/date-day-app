@@ -17,7 +17,6 @@ import PasswordBar from "./PasswordBar";
 import { registerUser } from "@/app/lib/actions/authActions";
 import { toast } from "react-toastify";
 
-// SCHEMA AND AUTH
 const FormSchema = z
   .object({
     firstName: z
@@ -50,22 +49,26 @@ const FormSchema = z
     path: ["confirmPassword"],
   });
 
-//TYPES
 type SignupInputType = z.infer<typeof FormSchema>;
 
-//COMPONENT RENDER FUNCTION//
+//
+//
+//
+//
+//
+
 const SignupForm = () => {
-  // STATE AND HOOKS
   const {
     register,
     handleSubmit,
     reset,
     control,
-    formState: { errors },
+    formState: { errors, dirtyFields, isDirty },
     watch,
   } = useForm<SignupInputType>({
     resolver: zodResolver(FormSchema),
   });
+
   const [isVisiblePassword, setVisiblePassword] = useState(false);
   const [passStrength, setPassStrength] = useState(0);
 
@@ -74,12 +77,10 @@ const SignupForm = () => {
     console.log(passStrength);
   }, [watch().password]);
 
-  //UTIL FUNCTIONS
   const toggleVisible = () => {
     setVisiblePassword((prev) => !prev);
   };
 
-  // EVENT HANDLERS
   const saveUser: SubmitHandler<SignupInputType> = async (data) => {
     const { accepted, confirmPassword, ...user } = data;
     try {
@@ -157,7 +158,11 @@ const SignupForm = () => {
           }
         />
 
-        <PasswordBar passStrength={passStrength} />
+        {dirtyFields.password ? (
+          <PasswordBar passStrength={passStrength} />
+        ) : (
+          <></>
+        )}
 
         <Button type="submit" className="col-span-2">
           Sign Up
