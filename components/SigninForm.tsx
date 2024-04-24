@@ -45,7 +45,6 @@ const SigninForm = (props: Props) => {
   };
 
   const onSubmit: SubmitHandler<SignInInputType> = async (data) => {
-    console.log(`This is your stupid data: ${data}`);
     const result = await signIn("credentials", {
       redirect: false,
       username: data.email,
@@ -66,6 +65,7 @@ const SigninForm = (props: Props) => {
       className="flex flex-col gap-2 justify-center items-center"
     >
       <Input
+        defaultValue=""
         label="email"
         {...register("email")}
         errorMessage={errors.email?.message}
@@ -73,6 +73,7 @@ const SigninForm = (props: Props) => {
 
       <Input
         label="password"
+        defaultValue=""
         type={isVisiblePassword ? "text" : "password"}
         {...register("password")}
         errorMessage={errors.password?.message}
@@ -88,12 +89,17 @@ const SigninForm = (props: Props) => {
         }
       />
       <div className="flex justify-center items-center gap-2 pb-1">
-        <Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          isLoading={isSubmitting}
+          color="primary"
+        >
           {isSubmitting ? "..." : "Log In"}
         </Button>
 
-        <Button as={Link} href="/auth/signup/page.tsx">
-          Sign Up
+        <Button as={Link} href="/auth/signup">
+          Not registered?
         </Button>
       </div>
     </form>

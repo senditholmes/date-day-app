@@ -1,6 +1,7 @@
 "use client";
 
-import { useSession } from "next-auth/react";
+import { Button } from "@nextui-org/button";
+import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
 import React from "react";
 
@@ -15,8 +16,11 @@ const SignInButtons = () => {
         </>
       ) : (
         <>
-          <Link href={"/api/auth/signin"}>Log In</Link>
-          <Link href={"/auth/signup"}>Sign Up </Link>
+          <Button onClick={() => signIn()}>Log In</Button>
+
+          <Button as={Link} href={"/auth/signup"}>
+            Sign Up
+          </Button>
         </>
       )}
     </div>

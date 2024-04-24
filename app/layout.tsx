@@ -25,7 +25,7 @@ export default function RootLayout({
           <HeaderNav />
           <div className="flex flex-row items-center justify-center md:h-[calc(100vh-64px)] p-24">
             {children}
-            <ToastContainer />
+            <ToastContainer position="bottom-right" />
           </div>
         </Providers>
       </body>
