@@ -1,11 +1,16 @@
+"use client";
+
 import React, { useState } from "react";
 import { Button, Input } from "@nextui-org/react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/16/solid";
 import Link from "next/link";
+import { signIn } from "next-auth/react";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 
 //TYPES
 interface Props {
@@ -24,6 +29,7 @@ const SignInFormSchema = z.object({
 type SignInInputType = z.infer<typeof SignInFormSchema>;
 
 const SigninForm = (props: Props) => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -38,8 +44,27 @@ const SigninForm = (props: Props) => {
     setVisiblePassword((prev) => !prev);
   };
 
+  const onSubmit: SubmitHandler<SignInInputType> = async (data) => {
+    console.log(`This is your stupid data: ${data}`);
+    const result = await signIn("credentials", {
+      redirect: false,
+      username: data.email,
+      password: data.password,
+    });
+
+    if (!result?.ok) {
+      toast.error(result?.error);
+      return;
+    }
+    toast.success("Welcome!");
+    router.push(props.callbackUrl ? props.callbackUrl : "/");
+  };
+
   return (
-    <form className="flex flex-col gap-2">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="flex flex-col gap-2 justify-center items-center"
+    >
       <Input
         label="email"
         {...register("email")}
@@ -48,6 +73,7 @@ const SigninForm = (props: Props) => {
 
       <Input
         label="password"
+        type={isVisiblePassword ? "text" : "password"}
         {...register("password")}
         errorMessage={errors.password?.message}
         endContent={
@@ -61,12 +87,14 @@ const SigninForm = (props: Props) => {
           )
         }
       />
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center gap-2 pb-1">
         <Button type="submit" disabled={isSubmitting} isLoading={isSubmitting}>
           {isSubmitting ? "..." : "Log In"}
         </Button>
 
-        <Button as={Link}>Sign Up</Button>
+        <Button as={Link} href="/auth/signup/page.tsx">
+          Sign Up
+        </Button>
       </div>
     </form>
   );

@@ -16,7 +16,7 @@ const SignInButtons = () => {
       ) : (
         <>
           <Link href={"/api/auth/signin"}>Log In</Link>
-          <Link href={"/auth/signup"}>Create An Account </Link>
+          <Link href={"/auth/signup"}>Sign Up </Link>
         </>
       )}
     </div>

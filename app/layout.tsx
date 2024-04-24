@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={`${inter.className} dark`}>
         <Providers>
           <HeaderNav />
-          <div className="flex md:h-[calc(100vh-64px)] items-center justify-between p-24">
+          <div className="flex flex-row items-center justify-center md:h-[calc(100vh-64px)] p-24">
             {children}
             <ToastContainer />
           </div>

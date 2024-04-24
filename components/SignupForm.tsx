@@ -164,14 +164,8 @@ const SignupForm = () => {
           <></>
         )}
 
-        <Button type="submit" className="col-span-2">
-          Sign Up
-        </Button>
         <Button type="submit" className="col-span-2" color="primary">
-          <Link href="#" className=" text-white">
-            {" "}
-            Log In{" "}
-          </Link>
+          Sign Up
         </Button>
 
         <Controller

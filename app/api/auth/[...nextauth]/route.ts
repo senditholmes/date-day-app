@@ -5,13 +5,15 @@ import NextAuth from "next-auth/next";
 import * as bcrypt from "bcrypt";
 import prisma from "@/app/lib/prisma";
 import { User } from "@prisma/client";
-import { getToken } from "next-auth/jwt";
 
 //
 export const authOptions: AuthOptions = {
+  pages: {
+    signIn: "/auth/signin",
+  },
   providers: [
     CredentialsProvider({
-      name: "Credentials",
+      name: "credentials",
 
       credentials: {
         username: {
@@ -26,7 +28,6 @@ export const authOptions: AuthOptions = {
         },
       },
       async authorize(credentials) {
-        //auth logic
         const user = await prisma.user.findUnique({
           where: {
             email: credentials?.username,
